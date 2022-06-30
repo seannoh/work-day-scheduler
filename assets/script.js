@@ -47,12 +47,17 @@ $(function() {
         } else {
           textEl.addClass("future");
         }
-
+        
+        var btnEl = $("<button>");
+        btnEl.addClass("saveBtn col-1");
+        var iconEl = $("<i>");
+        iconEl.addClass("fa-solid fa-floppy-disk");
+        btnEl.append(iconEl);
 
 
         rowEl.append(hourEl);
         rowEl.append(textEl);
-
+        rowEl.append(btnEl);
 
         containerEl.append(rowEl);
       }
