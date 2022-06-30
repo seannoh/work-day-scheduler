@@ -80,6 +80,10 @@ $(function() {
 
     // display current day
 
+    function displayDay() {
+      currentDayEl.text(moment().format("dddd, MMMM Do"));
+    }
+
     // save event
     function saveEvent() {
       var text = $(this).prev().val();
@@ -100,6 +104,7 @@ $(function() {
   // Function Calls
   loadEvents();
   displayEvents();
+  displayDay();
   
 
   // Event Listeners
