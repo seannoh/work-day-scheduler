@@ -37,9 +37,21 @@ $(function() {
         hourEl.addClass("hour col-md-1 col-2 text-right");
         hourEl.text(moment().hour(i).format("hA"));
 
+        var textEl = $("<textarea>");
+        textEl.addClass("col-md-10 col-9");
+        textEl.data("index", (i-9));
+        if(i < currHour){
+          textEl.addClass("past");
+        } else if(i == currHour){
+          textEl.addClass("present");
+        } else {
+          textEl.addClass("future");
+        }
+
 
 
         rowEl.append(hourEl);
+        rowEl.append(textEl);
 
 
         containerEl.append(rowEl);
