@@ -26,6 +26,25 @@ $(function() {
     }
 
     // display rows for each hour in the work day 
+    function displayEvents() {
+      var currHour = moment("1pm","ha").format("H");
+      console.log(currHour);
+      for(var i = 9; i <= 17; i++){
+        var rowEl = $("<div>");
+        rowEl.addClass("row time-block");
+
+        var hourEl = $("<div>");
+        hourEl.addClass("hour col-md-1 col-2 text-right");
+        hourEl.text(moment().hour(i).format("hA"));
+
+
+
+        rowEl.append(hourEl);
+
+
+        containerEl.append(rowEl);
+      }
+    }
       // For hours 9am to 5pm :
         // create a row
         // create hour column with hour of the day
@@ -47,6 +66,7 @@ $(function() {
 
 
   // Function Calls
+  displayEvents();
 
 
   // Event Listeners
