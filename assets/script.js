@@ -22,7 +22,7 @@ $(function() {
       if(rawEvents){
         var parsedEvents = JSON.parse(localStorage.getItem("workday-events"));
         // check if the events was saved the previous day and reset events if that's the case
-        if(moment(parsedEvents[9].timeModified).format("DDD") < moment("365","DDD").format("DDD")){
+        if(moment(parsedEvents[9].timeModified).format("DDD") < moment().format("DDD")){
           for(var i = 0; i < savedEvents.length - 1; i++){
             parsedEvents[i].text = "";
           }
@@ -35,8 +35,8 @@ $(function() {
     // display rows for each hour in the work day. each row has the hour, 
     // a colored text box based on current time, and a save button.
     function displayEvents() {
-      var currHour = moment("1pm","ha").format("H");
-      //var currHour = moment().format("H");
+      //var currHour = moment("1pm","ha").format("H");
+      var currHour = moment().format("H");
       console.log(currHour);
       for(var i = 9; i <= 17; i++){
         // create row element
@@ -65,11 +65,11 @@ $(function() {
         
         // create button with icon
         var btnEl = $("<button>");
-        btnEl.addClass("saveBtn col-1");
+        btnEl.addClass("btn saveBtn col-1 ");
         var iconEl = $("<i>");
         iconEl.addClass("fa-solid fa-floppy-disk");
         btnEl.append(iconEl);
-
+        
         // append all elements
         rowEl.append(hourEl);
         rowEl.append(textEl);
@@ -100,12 +100,24 @@ $(function() {
   // Function Calls
   loadEvents();
   displayEvents();
-
+  
 
   // Event Listeners
 
     // on container click, filter for save button and save event
     containerEl.on("click","button",saveEvent);
 
+    // add popover functionality to save buttons
+    $('button').popover({
+      content: "Saved",
+      delay: {"show":100, "hide":100}
+    })
+    $('button').on("click", function () {
+    
+      setTimeout(function () {
+          $('button').popover("hide");
+      }, 1000);
+    
+    });
 
 });
