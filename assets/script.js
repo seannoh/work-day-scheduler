@@ -35,8 +35,8 @@ $(function() {
     // display rows for each hour in the work day. each row has the hour, 
     // a colored text box based on current time, and a save button.
     function displayEvents() {
-      //var currHour = moment("1pm","ha").format("H");
-      var currHour = moment().format("H");
+      var currHour = moment("1pm","ha").format("H");
+      //var currHour = moment().format("H");
       console.log(currHour);
       for(var i = 9; i <= 17; i++){
         // create row element
